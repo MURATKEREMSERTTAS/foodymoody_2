@@ -59,6 +59,9 @@ const ReataurantImage = (props)=>(
             style={{width:'100%',height:180}}
             
         />
+        <TouchableOpacity style={{position:"absolute",right:20,top:20}} >
+            <MaterialCommunityIcons name='heart-outline' size={25} color="#fff" />
+        </TouchableOpacity>
     </>
 );
 
