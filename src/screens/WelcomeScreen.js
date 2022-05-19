@@ -41,7 +41,7 @@ const WelcomeScreen = ({navigation}) => {
     <View style={styles.container} >
         <StatusBar backgroundColor={Colors.DEFAULT_WHITE} barStyle="dark-content" translucent />
         <Seperator height={StatusBar.currentHeight} />
-        <Seperator height={Display.setHeight(8)} />
+        <Seperator height={Display.setHeight(7)} />
         <View style={styles.listcontainer} >
             <FlatList
             ref={welcomelist} 
@@ -56,14 +56,19 @@ const WelcomeScreen = ({navigation}) => {
             renderItem={({item})=> <WelcomeCard {...item} />}
             /> 
         </View>
-        <Seperator height={Display.setHeight(8)} />
+        <Seperator height={Display.setHeight(7)} />
         <Pagination index={listindex}/>
-        <Seperator height={Display.setHeight(8)} />
+        <Seperator height={Display.setHeight(7)} />
         {listindex === 2 ? (
-          <TouchableOpacity style={styles.getstartedbutton} onPress={navigation.navigate("Home")} >
+          <>
+          <TouchableOpacity style={styles.getstartedbutton} onPress={() => navigation.navigate("SignInScreen")} >
             <Text style={styles.getstartedtext} >Get Started</Text>
           </TouchableOpacity>
+          <Text style={{marginLeft:460,fontSize:7,marginTop:20}}>™️</Text>
+          <Text style={{marginLeft:380}}>FoodyMoody</Text>
+          </>
           ):(
+            <>
         <View style={styles.buttoncontainer} >
         <TouchableOpacity style={{marginLeft:10}} activeOpacity={0.8} onPress={()=>welcomelist.current.scrollToEnd()}  >
           <Text style={styles.buttonText} >SKIP</Text>
@@ -75,6 +80,9 @@ const WelcomeScreen = ({navigation}) => {
           <Text style={styles.buttonText} >NEXT</Text>
         </TouchableOpacity>
         </View>
+        <Text style={{marginLeft:460,fontSize:7}}>™️</Text>
+        <Text style={{marginLeft:380}}>FoodyMoody</Text>
+        </>
       )}
     </View>
   )
@@ -107,7 +115,7 @@ const styles = StyleSheet.create({
     },
     buttons:{
       paddingVertical:20,
-      paddingHorizontal:15, 
+      paddingHorizontal:10, 
     },
     buttonText:{
       fontSize:17,

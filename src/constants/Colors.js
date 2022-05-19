@@ -22,4 +22,6 @@ export default {
     DARK_THREE:'#495057',
     DARK_FOUR:'#6c757d',
     DARK_FIVE:'#838383',
+    INPUT_WHITE:'#ffffff',
+    REMEMBER_FORGOT_TEXT:'#9A86A4',
 };
