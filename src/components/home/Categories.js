@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text,Image, ScrollView } from 'react-native'
+import { Colors } from '../../constants';
 
 const items =[
     {
@@ -37,7 +38,7 @@ export default function Categories () {
     return (
         <View style={{
             marginTop:5,
-            backgroundColor:"#fff",
+            backgroundColor:Colors.DEFAULT_WHITE,
             paddingVertical:10,
             paddingLeft:20,
         }} >

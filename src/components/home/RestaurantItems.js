@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
+import { Colors } from '../../constants';
 
 export const localRestaurants = [
     {
@@ -44,7 +45,7 @@ export default function RestaurantItems({navigation,...props}) {
                     categories:restaurant.categories})}>
                     <View 
                         key={index}
-                        style={{marginTop:10,padding:15,backgroundColor:"white"}}>
+                        style={{marginTop:10,padding:15,backgroundColor:Colors.DEFAULT_WHITE}}>
                         <ReataurantImage image_url={restaurant.image_url} />
                         <ReastaurantInfo name={restaurant.name} rating={restaurant.rating} />
                     </View>  
@@ -75,22 +76,22 @@ const ReastaurantInfo = (props)=>(
         <View>
             <Text style={{
                 fontSize:15,
-                fontWeight:"bold"}} 
+                fontWeight:"bold",
+                color:Colors.DEFAULT_BLUE}} 
             >{props.name}</Text>  
             <Text style={{
                 fontSize:13,
-                color:"gray"}} 
+                color:Colors.DEFAULT_BLUE}} 
             >30-45 - min</Text>
         </View>
         <View style={{
-            backgroundColor:"#fff",
+            backgroundColor:Colors.DEFAULT_WHITE,
             height:30,
             width:30,
             alignItems:"center",
             justifyContent:"center",
-            borderRadius:15,}} 
-        >
-            <Text>{props.rating}</Text>
+            borderRadius:15,}} >
+            <Text style={{color:Colors.DEFAULT_BLUE1}} >{props.rating}✨</Text>
         </View>
     </View>
 );

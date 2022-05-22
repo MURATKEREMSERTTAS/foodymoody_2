@@ -64,7 +64,7 @@ const WelcomeScreen = ({navigation}) => {
           <TouchableOpacity style={styles.getstartedbutton} onPress={() => navigation.navigate("SignInScreen")} >
             <Text style={styles.getstartedtext} >Get Started</Text>
           </TouchableOpacity>
-          <Text style={{marginLeft:460,fontSize:7,marginTop:20}}>™️</Text>
+          <Text style={{marginLeft:460,fontSize:7,marginTop:28}}>™️</Text>
           <Text style={{marginLeft:380}}>FoodyMoody</Text>
           </>
           ):(

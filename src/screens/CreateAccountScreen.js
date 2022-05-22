@@ -5,24 +5,34 @@ import React,{useState} from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Feather from 'react-native-vector-icons/Feather'
 import { Display } from '../utils';
-import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
-const SignInScreen = ({navigation}) => {
+const CreateAccountScreen = ({navigation}) => {
   const [passwordShow,setPasswordShow] = useState(false);
   return (
     <View style={styles.container} >
       <StatusBar barStyle="dark-content" backgroundColor={Colors.DEFAULT_WHITE} translucent />
       <Seperator height={StatusBar.currentHeight} />
       <View style={styles.headerContainer} >
-        <Ionicons name='chevron-back-outline'  color={Colors.DARK_FIVE} size={30} onPress={() => navigation.goBack()} />
-        <Text style={styles.headerText} >Sign In</Text>
+        <Ionicons name='chevron-back-outline' color={Colors.DARK_FIVE} size={30} onPress={() => navigation.goBack()} />
+        <Text style={styles.headerText} >Sign Up</Text>
       </View>
-      <Text style={styles.title}>Welcome</Text>
-      <Text style={styles.content}>Enter your username and password</Text>
+      <Text style={styles.title}>Create Account</Text>
+      <Text style={styles.content}>Enter your username,E-mail and password</Text>
+      <Seperator height={Display.setHeight(2)} />
       <View style={styles.inputContainer} >
         <View style={styles.inputSubContainer} >
           <Feather name='user' size={22} color={Colors.INACTIVE_GREY} style={{marginRight:10}}/>
           <TextInput placeholder='Username'
+                    placeholderTextColor={Colors.DEFAULT_BLUE}
+                    selectionColor={Colors.DEFAULT_BLUE}
+                    style={styles.inputText} />
+        </View>
+      </View>
+      <Seperator height={Display.setHeight(2)} />
+      <View style={styles.inputContainer} >
+        <View style={styles.inputSubContainer} >
+          <Feather name='user' size={22} color={Colors.INACTIVE_GREY} style={{marginRight:10}}/>
+          <TextInput placeholder='E-mail address'
                     placeholderTextColor={Colors.DEFAULT_BLUE}
                     selectionColor={Colors.DEFAULT_BLUE}
                     style={styles.inputText} />
@@ -47,29 +57,17 @@ const SignInScreen = ({navigation}) => {
         </View>
       </View>
       <Text></Text>
-      <View style={styles.forgotPasswordContainer} >
-        <View style={{flexDirection:"row"}} >
-          <BouncyCheckbox iconStyle={{borderColor:"lightgrey",borderWidth:1,borderRadius:5}}
-                        fillColor={Colors.REMEMBER_FORGOT_TEXT}/>
-          <Text style={styles.rememberText} >Remember me</Text>
-        </View>
-        <Text style={styles.forgotPasswordText} onPress={()=>navigation.navigate("ForgotPasswordScreen")} >Forgot password ?</Text>
-      </View>
       <TouchableOpacity style={styles.signInButton} 
-                        onPress={() => navigation.navigate("Home")} >
-        <Text style={styles.SignInButtonText} >Sign In</Text>
+                        onPress={() => navigation.navigate("SignInScreen")} >
+        <Text style={styles.SignInButtonText} >Create Account</Text>
       </TouchableOpacity>
-      <View style={styles.signUpContainer} >
-        <Text style={styles.accountText} >Don't have an account?</Text>
-        <Text style={styles.signUpText} onPress={()=>navigation.navigate("CreateAccountScreen")} > Sign Up</Text>
-      </View>
       <Text style={styles.orText} >Or</Text>
       <TouchableOpacity style={styles.googleButton} >
         <View style={styles.socialIconContainer}>
           <View style={{left:1,position:"absolute"}} >
             <Image source={Images.GOOGLE} style={styles.socialIcon}/>
           </View>
-          <Text style={styles.SignInButtonText} >Sign In with Google</Text>
+          <Text style={styles.SignInButtonText} >Create Account with Google</Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity style={styles.facebookButton}  >
@@ -77,12 +75,12 @@ const SignInScreen = ({navigation}) => {
           <View style={{left:1,position:"absolute"}} >
             <Image source={Images.FACEBOOK} style={styles.socialIcon} />
           </View>
-          <Text style={styles.SignInButtonText} >Sign In with Facebook</Text>
+          <Text style={styles.SignInButtonText} >Create Account with Facebook</Text>
         </View>
       </TouchableOpacity>
       <Seperator height={Display.setHeight(20)} />
       <Text style={{marginLeft:460,fontSize:7}}>™️</Text>
-      <Text style={{marginLeft:380,color:Colors.DARK_FIVE}}>FoodyMoody</Text>
+      <Text style={{marginLeft:380}}>FoodyMoody</Text>
     </View>
   )
 }
@@ -101,7 +99,7 @@ const styles = StyleSheet.create({
     headerText:{
         fontSize:30,
         fontFamily:Fonts.POPPINS_MEDIUM,
-        color:Colors.DARK_FIVE,
+        color:Colors.DEFAULT_GREY,
         lineHeight:30*1.5,
         width:Display.setWidth(80),
         textAlign:'center',
@@ -109,7 +107,7 @@ const styles = StyleSheet.create({
     title:{
         fontSize:30,
         fontFamily:Fonts.POPPINS_MEDIUM,
-        color:Colors.DEFAULT_BLACK,
+        color:"white",
         lineHeight:30*1.5,
         marginTop:50,
         marginBottom:10,
@@ -239,4 +237,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default SignInScreen
+export default CreateAccountScreen

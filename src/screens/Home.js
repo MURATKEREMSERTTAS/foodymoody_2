@@ -1,11 +1,13 @@
 import React, { useEffect,useState} from 'react'
-import { View, Text,SafeAreaView, ScrollView,ActivityIndicator } from 'react-native'
+import { View, Text,SafeAreaView, ScrollView,ActivityIndicator, StatusBar, StyleSheet } from 'react-native'
 import { Divider } from 'react-native-elements/dist/divider/Divider';
+import { Seperator } from '../components';
 import BottomTabs from '../components/home/BottomTabs';
 import Categories from '../components/home/Categories';
-import HeaderTab from '../components/home/HeaderTab'
 import RestaurantItems, { localRestaurants } from '../components/home/RestaurantItems';
 import SearchBar from '../components/home/SearchBar';
+import { Colors } from '../constants';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const YELP_API_KEY="jn2mr1zXCAfpsWFiim2PRvXF8fusuycT7JPGBwyQ9Qcx3EtZIvBnf3QYT_GJOKyxfMOdFbtnBH_Nuqinq_oDhFl3QH7xhNP4xTyIQpHWGs9GKld19SSXfHAwKwKqYXYx";
 
@@ -62,17 +64,34 @@ else if(restaurantData===null){
 }
 else{
     return(
-        <SafeAreaView style={{marginTop:"10%",backgroundColor:"#eee",flex:1}} >
-            <View style={{backgroundColor:"white",padding:15}} >
-                <SearchBar cityHandler={setCity}/>
-            </View>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <Categories/>
-                <RestaurantItems restaurantData={restaurantData} navigation={navigation} />
-            </ScrollView>
-            <Divider width={1} />
-            <BottomTabs />
-        </SafeAreaView>
+    <View style={styles.container}  >
+        <StatusBar barStyle="dark-content" backgroundColor={Colors.DEFAULT_WHITE} translucent />
+        <Seperator height={StatusBar.currentHeight} />
+        <View style={styles.headerContainer} >
+            <Ionicons name='chevron-back-outline' color={Colors.DARK_FIVE} size={30} onPress={() => navigation.goBack()} />
+            <SearchBar cityHandler={setCity}/>
+        </View>
+        <ScrollView showsVerticalScrollIndicator={false}>
+            <Categories/>
+            <RestaurantItems restaurantData={restaurantData} navigation={navigation} />
+        </ScrollView>
+        <Divider width={1} />
+        <BottomTabs />
+    </View>
     );
 }};
+
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        backgroundColor:Colors.DEFAULT_WHITE,
+    },
+    headerContainer:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'center',
+        paddingVertical:10,
+        paddingHorizontal:20,
+    },
+})
 /*<HeaderTab activeTab={activeTab} setActiveTab={setActiveTab} />*/

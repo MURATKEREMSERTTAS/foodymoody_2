@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import { Colors } from '../../constants';
 
 export default function SearchBar({cityHandler}) {
     return (
@@ -14,17 +15,22 @@ export default function SearchBar({cityHandler}) {
                     const cityy = data.description.split(',')[0];
                     cityHandler(cityy);
                 }}
-                placeholder="search"
+                placeholder="Search"
+                placeholderTextColor={Colors.DEFAULT_BLUE}
+                selectionColor={Colors.DEFAULT_BLUE}
                 styles={{
                     textInput:{
-                        backgroundColor:"#eee",
+                        backgroundColor:Colors.DARK_ONE,
                         borderRadius:20,
                         fontWeight:"700",
                         marginTop:7,
+                        
                     },
                     textInputContainer:{
-                        backgroundColor:"#eee",
+                        backgroundColor:Colors.DARK_ONE,
                         borderRadius:50,
+                        borderColor:Colors.DEFAULT_BLUE,
+                        borderWidth:0.5,
                         flexDirection:"row",
                         alignItems:"center",
                         marginRight:10,
@@ -33,20 +39,6 @@ export default function SearchBar({cityHandler}) {
                 renderLeftButton={()=>(
                     <View style={{marginLeft:10}}>
                         <Ionicons name="location-sharp" size={24} />
-                    </View>
-                )}
-                renderRightButton={()=>(
-                    <View style={{
-                            flexDirection:"row",
-                            marginRight:10,
-                            backgroundColor:"white",
-                            borderRadius:30,
-                            padding:10,
-                            alignItems:"center"
-                        }}
-                    >
-                        <AntDesign name="clockcircle" size={11} />
-                        <Text style={{marginLeft:8}}>Search</Text> 
                     </View>
                 )}
             />
