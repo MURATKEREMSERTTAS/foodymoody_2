@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text,Image, ScrollView } from 'react-native'
+import { color } from 'react-native-reanimated';
 import { Colors } from '../../constants';
 
 const items =[
@@ -60,7 +61,8 @@ export default function Categories () {
                         />
                         <Text style ={{
                                 fontSize:15,
-                                fontWeight:"bold"
+                                fontWeight:"bold",
+                                color:Colors.DEFAULT_BLUE,
                             }}
                         >
                             {item.text}

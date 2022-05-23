@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     headerText:{
         fontSize:30,
         fontFamily:Fonts.POPPINS_MEDIUM,
-        color:Colors.DARK_FIVE,
+        color:Colors.REMEMBER_FORGOT_TEXT,
         lineHeight:30*1.5,
         width:Display.setWidth(80),
         textAlign:'center',
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     title:{
         fontSize:30,
         fontFamily:Fonts.POPPINS_MEDIUM,
-        color:Colors.DEFAULT_BLACK,
+        color:Colors.DEFAULT_BLUE1,
         lineHeight:30*1.5,
         marginTop:50,
         marginBottom:10,
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     content:{
         fontSize:20,
         fontFamily:Fonts.POPPINS_REGULAR,
-        color:Colors.DEFAULT_GREY,
+        color:Colors.DARK_FIVE,
         marginHorizontal:20,
         marginTop:10,
         marginBottom:10

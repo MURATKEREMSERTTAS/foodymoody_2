@@ -16,18 +16,18 @@ export default function SearchBar({cityHandler}) {
                     cityHandler(cityy);
                 }}
                 placeholder="Search"
-                placeholderTextColor={Colors.DEFAULT_BLUE}
+                placeholderTextColor={Colors.DEFAULT_BLUE1}
                 selectionColor={Colors.DEFAULT_BLUE}
                 styles={{
                     textInput:{
-                        backgroundColor:Colors.DARK_ONE,
+                        backgroundColor:"white",
                         borderRadius:20,
                         fontWeight:"700",
                         marginTop:7,
                         
                     },
                     textInputContainer:{
-                        backgroundColor:Colors.DARK_ONE,
+                        backgroundColor:"white",
                         borderRadius:50,
                         borderColor:Colors.DEFAULT_BLUE,
                         borderWidth:0.5,

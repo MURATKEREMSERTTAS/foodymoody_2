@@ -64,8 +64,9 @@ const WelcomeScreen = ({navigation}) => {
           <TouchableOpacity style={styles.getstartedbutton} onPress={() => navigation.navigate("SignInScreen")} >
             <Text style={styles.getstartedtext} >Get Started</Text>
           </TouchableOpacity>
-          <Text style={{marginLeft:460,fontSize:7,marginTop:28}}>™️</Text>
-          <Text style={{marginLeft:380}}>FoodyMoody</Text>
+          <Seperator height={Display.setHeight(2.77)} />
+          <Text style={{marginLeft:460,fontSize:7,color:Colors.DARK_FIVE}}>™️</Text>
+        <Text style={{marginLeft:380,color:Colors.DARK_FIVE}}>FoodyMoody</Text>
           </>
           ):(
             <>
@@ -80,8 +81,8 @@ const WelcomeScreen = ({navigation}) => {
           <Text style={styles.buttonText} >NEXT</Text>
         </TouchableOpacity>
         </View>
-        <Text style={{marginLeft:460,fontSize:7}}>™️</Text>
-        <Text style={{marginLeft:380}}>FoodyMoody</Text>
+        <Text style={{marginLeft:460,fontSize:7,color:Colors.DARK_FIVE}}>™️</Text>
+        <Text style={{marginLeft:380,color:Colors.DARK_FIVE}}>FoodyMoody</Text>
         </>
       )}
     </View>
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
     buttonText:{
       fontSize:17,
       fontFamily:Fonts.POPPINS_BOLD,
-      color:Colors.DEFAULT_GREY,
+      color:Colors.DEFAULT_BLUE1,
       lineHeight:17*1.5,
     },
     getstartedbutton:{

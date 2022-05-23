@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+import { Colors } from '../../constants';
 
 export default function BottomTabs() {
     return (
@@ -10,7 +11,7 @@ export default function BottomTabs() {
                 marginHorizontal:30,
                 justifyContent:"space-between"}}
             >
-            <Icon icon="home" text="Home" />
+            <Icon icon="home" text="Home"/>
             <Icon icon="search" text="Browse" />
             <Icon icon="shopping-bag" text="Grocery" />
             <Icon icon="receipt" text="Orders" />
@@ -27,9 +28,10 @@ const Icon =(props)=>(
             size={25}
             style={{
                 marginBottom:3,
-                alignSelf:"center"
+                alignSelf:"center",
+                color:Colors.DEFAULT_BLUE1
             }} />
-            <Text>{props.text}</Text>
+            <Text style={{color:Colors.DEFAULT_BLUE}} >{props.text}</Text>
         </View>
     </TouchableOpacity>
 );

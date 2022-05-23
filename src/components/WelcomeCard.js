@@ -29,12 +29,14 @@ const styles = StyleSheet.create({
     titlestyle:{
         fontSize:35,
         fontFamily:Fonts.POPPINS_BOLD,
+        color:Colors.DEFAULT_BLUE1
     },
     descriptionstyle:{
         fontSize:20,
         fontFamily:Fonts.POPPINS_LIGHT,
         textAlign:'center',
         marginHorizontal:20,
+        color : Colors.DEFAULT_BLUE1
 
     }
 })
