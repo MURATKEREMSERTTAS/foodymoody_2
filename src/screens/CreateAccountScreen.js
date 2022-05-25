@@ -58,7 +58,7 @@ const CreateAccountScreen = ({navigation}) => {
       </View>
       <Text></Text>
       <TouchableOpacity style={styles.signInButton} 
-                        onPress={() => navigation.navigate("SignInScreen")} >
+                        onPress={() => navigation.navigate("RegisterScreen")} >
         <Text style={styles.SignInButtonText} >Create Account</Text>
       </TouchableOpacity>
       <Text style={styles.orText} >Or</Text>
@@ -78,9 +78,9 @@ const CreateAccountScreen = ({navigation}) => {
           <Text style={styles.SignInButtonText} >Create Account with Facebook</Text>
         </View>
       </TouchableOpacity>
-      <Seperator height={Display.setHeight(20)} />
-      <Text style={{marginLeft:460,fontSize:7}}>™️</Text>
-      <Text style={{marginLeft:380}}>FoodyMoody</Text>
+      <Seperator height={Display.setHeight(21)} />
+      <Text style={{marginLeft:480,fontSize:7,color:Colors.DARK_FIVE}}>™️</Text>
+      <Text style={{marginLeft:400,color:Colors.DARK_FIVE}}>FoodyMoody</Text>
     </View>
   )
 }
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     headerText:{
         fontSize:30,
         fontFamily:Fonts.POPPINS_MEDIUM,
-        color:Colors.DEFAULT_GREY,
+        color:Colors.REMEMBER_FORGOT_TEXT,
         lineHeight:30*1.5,
         width:Display.setWidth(80),
         textAlign:'center',
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     title:{
         fontSize:30,
         fontFamily:Fonts.POPPINS_MEDIUM,
-        color:"white",
+        color:Colors.DEFAULT_BLUE1,
         lineHeight:30*1.5,
         marginTop:50,
         marginBottom:10,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     content:{
         fontSize:20,
         fontFamily:Fonts.POPPINS_REGULAR,
-        color:Colors.DEFAULT_GREY,
+        color:Colors.DARK_FIVE,
         marginHorizontal:20,
         marginTop:10,
         marginBottom:10

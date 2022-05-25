@@ -68,7 +68,6 @@ else{
         <StatusBar barStyle="dark-content" backgroundColor={Colors.DEFAULT_WHITE} translucent />
         <Seperator height={StatusBar.currentHeight} />
         <View style={styles.headerContainer} >
-            <Ionicons name='chevron-back-outline' color={Colors.DARK_FIVE} size={30} onPress={() => navigation.goBack()} />
             <SearchBar cityHandler={setCity}/>
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>

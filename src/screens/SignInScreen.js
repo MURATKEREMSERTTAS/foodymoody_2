@@ -80,9 +80,9 @@ const SignInScreen = ({navigation}) => {
           <Text style={styles.SignInButtonText} >Sign In with Facebook</Text>
         </View>
       </TouchableOpacity>
-      <Seperator height={Display.setHeight(20)} />
-      <Text style={{marginLeft:460,fontSize:7}}>™️</Text>
-      <Text style={{marginLeft:380,color:Colors.DARK_FIVE}}>FoodyMoody</Text>
+      <Seperator height={Display.setHeight(21)} />
+      <Text style={{marginLeft:480,fontSize:7}}>™️</Text>
+      <Text style={{marginLeft:400,color:Colors.DARK_FIVE}}>FoodyMoody</Text>
     </View>
   )
 }

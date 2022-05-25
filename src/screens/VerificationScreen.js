@@ -6,30 +6,28 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import Feather from 'react-native-vector-icons/Feather'
 import { Display } from '../utils';
 
-const ForgotPasswordScreen = ({navigation}) => {
+const VerificationScreen = ({navigation}) => {
   return (
     <View style={styles.container} >
       <StatusBar barStyle="dark-content" backgroundColor={Colors.DEFAULT_WHITE} translucent />
       <Seperator height={StatusBar.currentHeight} />
       <View style={styles.headerContainer} >
         <Ionicons name='chevron-back-outline' size={30} color={Colors.DARK_FIVE} onPress={() => navigation.goBack()} />
-        <Text style={styles.headerText} >Forget Password</Text>
+        <Text style={styles.headerText} >Verification</Text>
       </View>
-      <Text style={styles.title}>Forget Password</Text>
-      <Text style={styles.content}>Enter your E-mail</Text>
+      <Text style={styles.title}>Verification</Text>
+      <Text style={styles.content}>Enter the OTP code from the phone.</Text>
       <Seperator height={Display.setHeight(2)} />
       <View style={styles.inputContainer} >
         <View style={styles.inputSubContainer} >
-          <Feather name='user' size={22} color={Colors.INACTIVE_GREY} style={{marginRight:10}}/>
-          <TextInput placeholder='E-mail address'
-                    placeholderTextColor={Colors.DEFAULT_BLUE}
+            <TextInput placeholderTextColor={Colors.DEFAULT_BLUE}
                     selectionColor={Colors.DEFAULT_BLUE}
                     style={styles.inputText} />
         </View>
       </View>
       <TouchableOpacity style={styles.signInButton} 
                         onPress={() => navigation.navigate("SignInScreen")} >
-        <Text style={styles.SignInButtonText} >Sign In</Text>
+        <Text style={styles.SignInButtonText} >Verify</Text>
       </TouchableOpacity>
       <Seperator height={Display.setHeight(60)} />
       <Text style={{marginLeft:480,fontSize:7,color:Colors.DARK_FIVE}}>™️</Text>
@@ -105,4 +103,4 @@ const styles = StyleSheet.create({
       justifyContent:'center',
     },
 })
-export default ForgotPasswordScreen;
+export default VerificationScreen;
