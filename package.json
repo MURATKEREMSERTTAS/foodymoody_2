@@ -13,6 +13,7 @@
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/stack": "^6.2.1",
+    "axios": "^0.27.2",
     "react": "17.0.2",
     "react-native": "0.68.2",
     "react-native-bouncy-checkbox": "^2.1.10",
@@ -40,5 +41,8 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "projectConfig": {
+    "backendApiBaseUrl": "http://192.168.1.69:3000"
   }
 }

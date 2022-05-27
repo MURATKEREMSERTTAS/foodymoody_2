@@ -5,9 +5,19 @@ import React,{useState} from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Feather from 'react-native-vector-icons/Feather'
 import { Display } from '../utils';
+import { AuthenticationService } from '../services';
+
 
 const CreateAccountScreen = ({navigation}) => {
   const [passwordShow,setPasswordShow] = useState(false);
+  const[username,setUsername] = useState('');
+  const[email,setEmail] = useState('');
+  const[password,setPassword] = useState('');
+  const register = ()=>{
+    let user ={username,email,password};
+    AuthenticationService.register(user).then(res=>{console.log(res)})
+    //navigation.navigate("RegisterScreen")
+  }
   return (
     <View style={styles.container} >
       <StatusBar barStyle="dark-content" backgroundColor={Colors.DEFAULT_WHITE} translucent />
@@ -25,7 +35,8 @@ const CreateAccountScreen = ({navigation}) => {
           <TextInput placeholder='Username'
                     placeholderTextColor={Colors.DEFAULT_BLUE}
                     selectionColor={Colors.DEFAULT_BLUE}
-                    style={styles.inputText} />
+                    style={styles.inputText} 
+                    onChangeText={(text)=>setUsername(text)}/>
         </View>
       </View>
       <Seperator height={Display.setHeight(2)} />
@@ -35,7 +46,8 @@ const CreateAccountScreen = ({navigation}) => {
           <TextInput placeholder='E-mail address'
                     placeholderTextColor={Colors.DEFAULT_BLUE}
                     selectionColor={Colors.DEFAULT_BLUE}
-                    style={styles.inputText} />
+                    style={styles.inputText}
+                    onChangeText={(text)=>setEmail(text)} />
         </View>
       </View>
       <Seperator height={Display.setHeight(2)} />
@@ -49,7 +61,7 @@ const CreateAccountScreen = ({navigation}) => {
                      placeholderTextColor={Colors.DEFAULT_BLUE}
                      selectionColor={Colors.DEFAULT_BLUE}
                      style={styles.inputText}
-                     />
+                     onChangeText={(text)=>setPassword(text)} />
           <Feather name={passwordShow? 'eye' : 'eye-off'} size={22}  
           color={Colors.INACTIVE_GREY}
           onPress={()=>setPasswordShow(!passwordShow)} 
@@ -58,7 +70,7 @@ const CreateAccountScreen = ({navigation}) => {
       </View>
       <Text></Text>
       <TouchableOpacity style={styles.signInButton} 
-                        onPress={() => navigation.navigate("RegisterScreen")} >
+                        onPress={() => register()} >
         <Text style={styles.SignInButtonText} >Create Account</Text>
       </TouchableOpacity>
       <Text style={styles.orText} >Or</Text>

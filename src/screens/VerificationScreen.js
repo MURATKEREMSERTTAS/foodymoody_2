@@ -1,12 +1,17 @@
 import { StyleSheet, Text, View,StatusBar,TextInput,TouchableOpacity, Image } from 'react-native'
 import {Seperator} from '../components';
 import {Colors,Fonts,Images} from '../constants';
-import React from 'react'
+import React,{useRef,useState} from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Feather from 'react-native-vector-icons/Feather'
 import { Display } from '../utils';
 
-const VerificationScreen = ({navigation}) => {
+const VerificationScreen = ({navigation, route:{params:{phoneNumber}}}) => {
+  const firstInput = useRef();
+  const secondInput = useRef();
+  const thirdInput = useRef();
+  const fourthInput = useRef();
+  const [otp, setOtp] = useState({1: '', 2: '', 3: '', 4: ''});
   return (
     <View style={styles.container} >
       <StatusBar barStyle="dark-content" backgroundColor={Colors.DEFAULT_WHITE} translucent />
@@ -15,18 +20,57 @@ const VerificationScreen = ({navigation}) => {
         <Ionicons name='chevron-back-outline' size={30} color={Colors.DARK_FIVE} onPress={() => navigation.goBack()} />
         <Text style={styles.headerText} >Verification</Text>
       </View>
-      <Text style={styles.title}>Verification</Text>
+      <Text style={styles.title}>{phoneNumber}</Text>
       <Text style={styles.content}>Enter the OTP code from the phone.</Text>
       <Seperator height={Display.setHeight(2)} />
-      <View style={styles.inputContainer} >
-        <View style={styles.inputSubContainer} >
-            <TextInput placeholderTextColor={Colors.DEFAULT_BLUE}
-                    selectionColor={Colors.DEFAULT_BLUE}
-                    style={styles.inputText} />
+      <View style={{flexDirection:"row",marginHorizontal:37}}>
+        <View style={styles.inputContainer} >
+          <View style={styles.inputSubContainer} >
+          <TextInput placeholderTextColor={Colors.DEFAULT_BLUE}
+                      selectionColor={Colors.DEFAULT_BLUE}
+                      style={styles.inputText} 
+                      keyboardType="numeric" 
+                      maxLength={1} 
+                      ref={firstInput}
+                      onChangeText={text => {setOtp({...otp, 1: text});text && secondInput.current.focus();}}/>
+          </View>
+        </View>
+        <View style={styles.inputContainer} >
+          <View style={styles.inputSubContainer} >
+          <TextInput placeholderTextColor={Colors.DEFAULT_BLUE}
+                      selectionColor={Colors.DEFAULT_BLUE}
+                      style={styles.inputText} 
+                      keyboardType="numeric" 
+                      maxLength={1}
+                      ref={secondInput}
+                      onChangeText={text => {setOtp({...otp, 2: text});text ? thirdInput.current.focus() : firstInput.current.focus();}} />
+          </View>
+        </View>
+        <View style={styles.inputContainer} >
+          <View style={styles.inputSubContainer} >
+              <TextInput placeholderTextColor={Colors.DEFAULT_BLUE}
+                      selectionColor={Colors.DEFAULT_BLUE}
+                      style={styles.inputText} 
+                      keyboardType="numeric" 
+                      maxLength={1}
+                      ref={thirdInput}
+                      onChangeText={text => {setOtp({...otp, 3: text});text ? fourthInput.current.focus() : secondInput.current.focus();}} />
+          </View>
+        </View>
+        <View style={styles.inputContainer} >
+          <View style={styles.inputSubContainer} >
+          <TextInput placeholderTextColor={Colors.DEFAULT_BLUE}
+                      selectionColor={Colors.DEFAULT_BLUE}
+                      style={styles.inputText} 
+                      keyboardType="numeric" 
+                      maxLength={1}
+                      ref={fourthInput}
+                      onChangeText={text => {setOtp({...otp, 4: text});!text && thirdInput.current.focus();}} />
+          </View>
         </View>
       </View>
       <TouchableOpacity style={styles.signInButton} 
-                        onPress={() => navigation.navigate("SignInScreen")} >
+                        onPress={() => navigation.navigate("SignInScreen",console.log(otp))} >
         <Text style={styles.SignInButtonText} >Verify</Text>
       </TouchableOpacity>
       <Seperator height={Display.setHeight(60)} />
@@ -77,6 +121,7 @@ const styles = StyleSheet.create({
       borderRadius:8,
       paddingHorizontal:20,
       marginHorizontal:20,
+      width:Display.setWidth(13),
       borderColor:Colors.DEFAULT_BLUE1,
       borderWidth:0.5,
       justifyContent:'center',

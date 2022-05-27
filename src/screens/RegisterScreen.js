@@ -13,6 +13,7 @@ const RegisterScreen = ({navigation}) => {
   const [inputsContainer,setInputsContainer] = useState(0);
   const [dropDown,setDropDown] = useState(false);
   const [dropDownLayout,setDropDownLayout] = useState({});
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const closeDropDown = (pageX,pageY) => {
     if(dropDown){
@@ -50,6 +51,8 @@ const RegisterScreen = ({navigation}) => {
                     selectionColor={Colors.DEFAULT_BLUE}
                     keyboardType='number-pad'
                     onFocus={()=>setDropDown(false)}
+                    onChangeText={text =>
+                      setPhoneNumber(selectedCountry?.dial_code + text)}
                     style={styles.inputText} />
         </View>
       </View>
@@ -61,17 +64,18 @@ const RegisterScreen = ({navigation}) => {
         renderItem={({item}) => <CountryItem {...item} onPress={(country) => {setDropDown(false);setSelectedCountry(country)}} />}/>
      </View>)}
      <TouchableOpacity style={styles.signInButton} 
-                        onPress={() => navigation.navigate("VerificationScreen")} >
+                        onPress={() => navigation.navigate("VerificationScreen", {phoneNumber})} >
         <Text style={styles.SignInButtonText} >Continue</Text>
       </TouchableOpacity>
       <Seperator height={Display.setHeight(51)} />
       <Text style={{marginLeft:480,fontSize:7,color:Colors.DARK_FIVE}}>™️</Text>
       <Text style={{marginLeft:400,color:Colors.DARK_FIVE}}>FoodyMoody</Text>
-    
     </View>
+    
   )
-}
+  
 
+}
 
 const styles = StyleSheet.create({
     container:{
