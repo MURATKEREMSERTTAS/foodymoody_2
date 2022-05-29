@@ -11,7 +11,7 @@ export default function ViewCart({navigation}) {
     const [modalVisible, setModalVisible] = useState(false);
     const orderList = ()=>{
         AuthenticationService.addOrder({items,total,restaurantName})
-        .then(setModalVisible(false))
+        .then(setModalVisible(false),navigation.navigate('OrderCompleteScreen'))
     }
     const checkoutModelContent = () => { 
     return (

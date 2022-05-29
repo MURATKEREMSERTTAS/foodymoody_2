@@ -1,5 +1,5 @@
 import React, { useEffect,useState} from 'react'
-import { View, Text,SafeAreaView, ScrollView,ActivityIndicator, StatusBar, StyleSheet } from 'react-native'
+import { View,ScrollView,ActivityIndicator, StatusBar, StyleSheet } from 'react-native'
 import { Divider } from 'react-native-elements/dist/divider/Divider';
 import { Seperator } from '../components';
 import BottomTabs from '../components/home/BottomTabs';
@@ -7,13 +7,12 @@ import Categories from '../components/home/Categories';
 import RestaurantItems, { localRestaurants } from '../components/home/RestaurantItems';
 import SearchBar from '../components/home/SearchBar';
 import { Colors } from '../constants';
-import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const YELP_API_KEY="jn2mr1zXCAfpsWFiim2PRvXF8fusuycT7JPGBwyQ9Qcx3EtZIvBnf3QYT_GJOKyxfMOdFbtnBH_Nuqinq_oDhFl3QH7xhNP4xTyIQpHWGs9GKld19SSXfHAwKwKqYXYx";
 
 export default function Home({navigation}) {
     const [restaurantData,setRestaurantData] = useState(localRestaurants);
-    const [cityy,setCity] = useState("San Francisco ");
+    const [cityy,setCity] = useState("Çanakkale");
     const [loaded,setLoaded]=useState(true)
     /*const [activeTab,setActiveTab] = useState("Delivery");*/
     async function getRestaurantFromYelp(cityy){
