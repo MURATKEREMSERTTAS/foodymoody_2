@@ -5,7 +5,8 @@ const BACKEND_API = {
   BASE_API_URL: `${BACKEND_BASE_URL}/api`,
   REGISTER: '/register',
   LOGIN: '/login',
-  USER_EXIST: '/user-exist',
+  USER_EXİST : '/check-exist',
+  ORDER : '/order',
 };
 
 export default {BACKEND_API};

@@ -5,4 +5,5 @@ export default {
     FAVORITE : require('../assets/images/order.png'),
     FACEBOOK : require('../assets/images/facebook.png'),
     GOOGLE : require('../assets/images/google.png'),
+    loader : require('../assets/images/loader.json'),
 }

@@ -44,7 +44,7 @@ const checkUserExist = async (type, value) => {
   try {
     let params = {[type]: value};
     let userCheckResponse = await AuthRequest.get(
-      ApiContants.BACKEND_API.USER_EXIST,
+      ApiContants.BACKEND_API.USER_EXİST,
       {params},
     );
     return userCheckResponse?.data;
@@ -54,4 +54,19 @@ const checkUserExist = async (type, value) => {
   }
 };
 
-export default {register, login, checkUserExist};
+const addOrder= async order => {
+  try {
+    let requestBody = {
+      order: order,
+    };
+    let orderResponse = await AuthRequest.post(
+      ApiContants.BACKEND_API.ORDER,
+      requestBody,
+    );
+    return orderResponse?.data;
+  } catch (error) {
+    console.log(error);
+    return {status: false, message: 'Oops! Something went wrong'};
+  }
+}
+export default {register, login, checkUserExist,addOrder};

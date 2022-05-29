@@ -37,10 +37,10 @@ const foods = [
     },
   ];
 
-export default function MenuItem(restaurantname) {
+export default function MenuItem(restaurantName) {
 const dispatch = useDispatch();
 const selectedItems = (items,checkboxValue) => {
-    dispatch({type:"ADD_TO_CART",payload: {...items,restaurantname:restaurantname,checkboxValue:checkboxValue}})
+    dispatch({type:"ADD_TO_CART",payload: {...items,restaurantName:restaurantName,checkboxValue:checkboxValue}})
 }
 const costItems = useSelector(state => state.cartReducer.selectedItems.items);
 const foodInCart = (food,costItems) => Boolean(costItems.find(item => item.title === food.title));

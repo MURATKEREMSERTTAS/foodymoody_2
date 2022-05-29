@@ -1,5 +1,5 @@
 let defaultState = {
-    selectedItems:{items:[],restaurantName:""},
+    selectedItems:{items:[],restaurantname:""},
 }
 
 let cartReducer = (state = defaultState, action) => {
@@ -10,14 +10,14 @@ let cartReducer = (state = defaultState, action) => {
                 console.log("checkboxvalue is true");
                 newState.selectedItems={
                     items:[...newState.selectedItems.items,action.payload],
-                    restaurantName : action.payload.restaurantName,
+                    restaurantname : action.payload.restaurantName,
                 };
                 
             } else {
                 console.log("checkboxvalue is false");
                 newState.selectedItems={
                     items:[...newState.selectedItems.items.filter(item => item.title !== action.payload.title)],
-                    restaurantName : action.payload.restaurantName,
+                    restaurantname : action.payload.restaurantName,
                 };
             }
            console.log(newState);

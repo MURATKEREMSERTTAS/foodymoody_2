@@ -6,6 +6,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import Feather from 'react-native-vector-icons/Feather'
 import { Display } from '../utils';
 import { AuthenticationService } from '../services';
+import LottieView from 'lottie-react-native';
+
 
 
 const CreateAccountScreen = ({navigation}) => {
@@ -13,10 +15,30 @@ const CreateAccountScreen = ({navigation}) => {
   const[username,setUsername] = useState('');
   const[email,setEmail] = useState('');
   const[password,setPassword] = useState('');
+  const [error,setError] = useState('');
+  const[loading,setLoading] = useState(false);
+  const [usernameerror,setUsernameError] = useState('');
+  const [emailerror,setEmailError] = useState('');
   const register = ()=>{
     let user ={username,email,password};
-    AuthenticationService.register(user).then(res=>{console.log(res)})
-    //navigation.navigate("RegisterScreen")
+    setLoading(true);
+    AuthenticationService.register(user)
+    .then(res=>{console.log(res);if(!res?.status){
+      setError(res.message);}else{setError(" ");navigation.navigate("RegisterScreen")};setLoading(false);})
+    
+  }
+  const checkUserExist = (type,value)=>{
+    if(value?.lenght > 0){
+      AuthenticationService.checkUserExist(type,value)
+      .then(res=>{
+        if(res?.status){
+        type === 'email' && emailerror ? setEmailError(""):null;
+        type === 'username' && usernameerror ? setUsernameError(""):null;
+      }else{
+        type === 'email' ? setEmailError(res?.message):null;
+        type === 'username' ? setUsernameError(res?.message):null;
+      }})
+    }
   }
   return (
     <View style={styles.container} >
@@ -36,10 +58,11 @@ const CreateAccountScreen = ({navigation}) => {
                     placeholderTextColor={Colors.DEFAULT_BLUE}
                     selectionColor={Colors.DEFAULT_BLUE}
                     style={styles.inputText} 
-                    onChangeText={(text)=>setUsername(text)}/>
+                    onChangeText={(text)=>setUsername(text)}
+                    onEndEditing={({nativeEvent:{text}}) => checkUserExist('username',text)}/>
         </View>
       </View>
-      <Seperator height={Display.setHeight(2)} />
+      <Text style={styles.errorMsg} >{usernameerror}</Text>
       <View style={styles.inputContainer} >
         <View style={styles.inputSubContainer} >
           <Feather name='user' size={22} color={Colors.INACTIVE_GREY} style={{marginRight:10}}/>
@@ -47,10 +70,11 @@ const CreateAccountScreen = ({navigation}) => {
                     placeholderTextColor={Colors.DEFAULT_BLUE}
                     selectionColor={Colors.DEFAULT_BLUE}
                     style={styles.inputText}
-                    onChangeText={(text)=>setEmail(text)} />
+                    onChangeText={(text)=>setEmail(text)}
+                    onEndEditing={({nativeEvent:{text}}) => checkUserExist('email',text)} />
         </View>
       </View>
-      <Seperator height={Display.setHeight(2)} />
+      <Text style={styles.errorMsg} >{emailerror}</Text>
       <View style={styles.inputContainer} >
         <View style={styles.inputSubContainer} >
           <Feather name='key' size={22} 
@@ -68,11 +92,16 @@ const CreateAccountScreen = ({navigation}) => {
           style={{marginRight:10}}/>
         </View>
       </View>
-      <Text></Text>
+      <Text style={styles.errorMsg} >{error}</Text>
       <TouchableOpacity style={styles.signInButton} 
                         onPress={() => register()} >
-        <Text style={styles.SignInButtonText} >Create Account</Text>
+        {loading ?(
+                <LottieView source={Images.loader} autoPlay renderMode='AUTOMATIC' /> 
+                ):(
+                <Text style={styles.SignInButtonText} >Create Account</Text>  
+                )}
       </TouchableOpacity>
+      <Seperator height={Display.setHeight(2)} />
       <Text style={styles.orText} >Or</Text>
       <TouchableOpacity style={styles.googleButton} >
         <View style={styles.socialIconContainer}>
@@ -90,7 +119,7 @@ const CreateAccountScreen = ({navigation}) => {
           <Text style={styles.SignInButtonText} >Create Account with Facebook</Text>
         </View>
       </TouchableOpacity>
-      <Seperator height={Display.setHeight(21)} />
+      <Seperator height={Display.setHeight(16)} />
       <Text style={{marginLeft:480,fontSize:7,color:Colors.DARK_FIVE}}>™️</Text>
       <Text style={{marginLeft:400,color:Colors.DARK_FIVE}}>FoodyMoody</Text>
     </View>
@@ -180,6 +209,7 @@ const styles = StyleSheet.create({
       paddingVertical:20,
       paddingHorizontal:20,
       marginHorizontal:20,
+      height:Display.setHeight(7),
       marginTop:20,
       alignItems:'center',
       justifyContent:'center',
@@ -246,7 +276,17 @@ const styles = StyleSheet.create({
       alignItems:'center',
       justifyContent:'center',
       width:'100%',
-    }
+    },
+    errorMsg:{
+      fontSize:14,
+      lineHeight:14*1.5,
+      fontFamily:Fonts.POPPINS_REGULAR,
+      color:Colors.LIGTH_RED,
+      marginHorizontal:20,
+      marginTop:10,
+    },
 })
+
+
 
 export default CreateAccountScreen

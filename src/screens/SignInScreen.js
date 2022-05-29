@@ -6,9 +6,35 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import Feather from 'react-native-vector-icons/Feather'
 import { Display } from '../utils';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import { AuthenticationService} from '../services/index';
+import LottieView from 'lottie-react-native';
+import { useDispatch,useSelector } from 'react-redux';
+
+
+
 
 const SignInScreen = ({navigation}) => {
   const [passwordShow,setPasswordShow] = useState(false);
+  const [username,setUsername] = useState('');
+  const [password,setPassword] = useState('');
+  const [loading,setIsLoading] = useState(false);
+  const[error,setError] = useState('');
+  
+  const SıgnIn =  async () => {
+    setIsLoading(true);
+    let user ={
+      username:username,
+      password:password
+    }
+    AuthenticationService.login(user).then(res => {
+      setIsLoading(false);
+      console.log(res);
+      if(res?.status){
+      navigation.navigate('Home');
+      }else{setError(res?.message);}
+    })
+    
+  }
   return (
     <View style={styles.container} >
       <StatusBar barStyle="dark-content" backgroundColor={Colors.DEFAULT_WHITE} translucent />
@@ -25,7 +51,8 @@ const SignInScreen = ({navigation}) => {
           <TextInput placeholder='Username'
                     placeholderTextColor={Colors.DEFAULT_BLUE}
                     selectionColor={Colors.DEFAULT_BLUE}
-                    style={styles.inputText} />
+                    style={styles.inputText}
+                    onChangeText={(text)=>setUsername(text)} />
         </View>
       </View>
       <Seperator height={Display.setHeight(2)} />
@@ -39,14 +66,14 @@ const SignInScreen = ({navigation}) => {
                      placeholderTextColor={Colors.DEFAULT_BLUE}
                      selectionColor={Colors.DEFAULT_BLUE}
                      style={styles.inputText}
-                     />
+                     onChangeText={(text)=>setPassword(text)}/>
           <Feather name={passwordShow? 'eye' : 'eye-off'} size={22}  
           color={Colors.INACTIVE_GREY}
           onPress={()=>setPasswordShow(!passwordShow)} 
           style={{marginRight:10}}/>
         </View>
       </View>
-      <Text></Text>
+      <Text style={styles.errorMsg} >{error}</Text>
       <View style={styles.forgotPasswordContainer} >
         <View style={{flexDirection:"row"}} >
           <BouncyCheckbox iconStyle={{borderColor:"lightgrey",borderWidth:1,borderRadius:5}}
@@ -56,8 +83,12 @@ const SignInScreen = ({navigation}) => {
         <Text style={styles.forgotPasswordText} onPress={()=>navigation.navigate("ForgotPasswordScreen")} >Forgot password ?</Text>
       </View>
       <TouchableOpacity style={styles.signInButton} 
-                        onPress={() => navigation.navigate("Home")} >
-        <Text style={styles.SignInButtonText} >Sign In</Text>
+                        onPress={() => SıgnIn()} >
+        {loading ?(
+                <LottieView source={Images.loader} autoPlay renderMode='AUTOMATIC' /> 
+                ):(
+                <Text style={styles.SignInButtonText} >Sign In</Text>  
+                )}
       </TouchableOpacity>
       <View style={styles.signUpContainer} >
         <Text style={styles.accountText} >Don't have an account?</Text>
@@ -80,7 +111,7 @@ const SignInScreen = ({navigation}) => {
           <Text style={styles.SignInButtonText} >Sign In with Facebook</Text>
         </View>
       </TouchableOpacity>
-      <Seperator height={Display.setHeight(21)} />
+      <Seperator height={Display.setHeight(20)} />
       <Text style={{marginLeft:480,fontSize:7}}>™️</Text>
       <Text style={{marginLeft:400,color:Colors.DARK_FIVE}}>FoodyMoody</Text>
     </View>
@@ -170,6 +201,7 @@ const styles = StyleSheet.create({
       paddingVertical:20,
       paddingHorizontal:20,
       marginHorizontal:20,
+      height:Display.setHeight(7),
       marginTop:20,
       alignItems:'center',
       justifyContent:'center',
@@ -236,7 +268,14 @@ const styles = StyleSheet.create({
       alignItems:'center',
       justifyContent:'center',
       width:'100%',
-    }
+    },
+    errorMsg:{
+      fontSize:14,
+      lineHeight:14*1.5,
+      fontFamily:Fonts.POPPINS_REGULAR,
+      color:Colors.LIGTH_RED,
+      marginHorizontal:20,
+      marginTop:10,
+    },
 })
-
 export default SignInScreen

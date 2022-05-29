@@ -2,22 +2,17 @@ import { View, Text, TouchableOpacity, StyleSheet,Modal } from 'react-native'
 import React,{useState} from 'react'
 import { useSelector } from 'react-redux'
 import OrderItem from './OrderItem'; 
+import AuthenticationService from '../../services/AuthenticationService';
 
 export default function ViewCart({navigation}) {
     const {items,restaurantName} = useSelector((state) => state.cartReducer.selectedItems);
     const total = items.map((item) => Number(item.price.replace("$",""))).reduce((prev, curr) => prev + curr,0);
     const totalUSD = total.toLocaleString('en', { style: 'currency', currency: 'USD' });
     const [modalVisible, setModalVisible] = useState(false);
-    /*const addOrderTofirebase = () => {
-        const db = firebase.firestore();
-        db.collection("orders").add({
-            items: items,
-            restaurantName: restaurantName,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        });
-        setModalVisible(false);
-    }*/
-
+    const orderList = ()=>{
+        AuthenticationService.addOrder({items,total,restaurantName})
+        .then(setModalVisible(false))
+    }
     const checkoutModelContent = () => { 
     return (
     <>
@@ -32,7 +27,7 @@ export default function ViewCart({navigation}) {
                     <Text>${totalUSD}</Text>
                 </View>
                 <View style={{flexDirection:"row",justifyContent:"center"}} >
-                    <TouchableOpacity style={styles.subTotalCheckout} onPress={()=>setModalVisible(false)} >
+                    <TouchableOpacity style={styles.subTotalCheckout} onPress={()=>orderList()} >
                         <Text style={{color:"white"}} >Checkout</Text>
                         <Text style={{position:"absolute",right:20,color:"white",fontsize:15,top:13}} >${total? totalUSD : ""}</Text>
                     </TouchableOpacity>
