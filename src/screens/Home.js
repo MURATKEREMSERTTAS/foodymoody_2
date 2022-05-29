@@ -74,7 +74,7 @@ else{
             <RestaurantItems restaurantData={restaurantData} navigation={navigation} />
         </ScrollView>
         <Divider width={1} />
-        <BottomTabs />
+        <BottomTabs navigation={navigation} />
     </View>
     );
 }};

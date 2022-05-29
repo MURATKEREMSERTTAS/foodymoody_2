@@ -16,8 +16,8 @@ const OrderComplete = ({navigation}) => {
     const totalUSD = total.toLocaleString('en', { style: 'currency', currency: 'USD' });
       return (
         <View style={styles.container} >
-            <StatusBar backgroundColor={Colors.DEFAULT_WHITE} barStyle="light-content" translucent />
-            <LottieView source={Images.loader} autoPlay renderMode='AUTOMATIC' />
+          <StatusBar backgroundColor={Colors.DEFAULT_WHITE} barStyle="light-content" translucent />
+          <LottieView source={Images.loader} autoPlay renderMode='AUTOMATIC' />
           <Text style={styles.icontext} >Order Complete</Text>
           <Text style={styles.subText} >The amount of your order is ${totalUSD}</Text>
           <Text style={styles.subText} >Once ready, the courier will deliver </Text>

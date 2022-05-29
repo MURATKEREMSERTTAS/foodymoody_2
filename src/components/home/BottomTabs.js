@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import { Colors } from '../../constants';
 
-export default function BottomTabs() {
+export default function BottomTabs({navigation}) {
     return (
         <View style={{
                 flexDirection:"row",
@@ -11,17 +11,15 @@ export default function BottomTabs() {
                 marginHorizontal:30,
                 justifyContent:"space-between"}}
             >
-            <Icon icon="home" text="Home"/>
-            <Icon icon="search" text="Browse" />
-            <Icon icon="shopping-bag" text="Grocery" />
-            <Icon icon="receipt" text="Orders" />
-            <Icon icon="user" text="Account" />
+            <Icon icon="home" text="Home"  onPress={()=>navigation.navigate("Home")} />
+            <Icon icon="receipt" text="Orders"  onPress={()=>navigation.navigate("OrderScreen")}/>
+            <Icon icon="door-open" text="Log Out"  onPress={()=>navigation.navigate("SignInScreen")}/>
         </View>
     )
 }
 
 const Icon =(props)=>(
-    <TouchableOpacity>    
+    <TouchableOpacity onPress={()=>props.onPress()} >    
         <View>
             <FontAwesome5 
             name={props.icon}

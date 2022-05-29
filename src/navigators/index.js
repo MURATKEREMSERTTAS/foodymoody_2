@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import {SplashScreen,WelcomeScreen,SignInScreen,OrderComplete,CreateAccountScreen,ForgotPasswordScreen,RegisterScreen,RestaurantDetail,Home, VerificationScreen} from "../screens";
+import {SplashScreen,WelcomeScreen,SignInScreen,OrderComplete,CreateAccountScreen,ForgotPasswordScreen,RegisterScreen,RestaurantDetail,Home, VerificationScreen, OrderScreen} from "../screens";
 import { Provider } from 'react-redux';
 import configureStore from '../redux/store';
 
@@ -23,6 +23,7 @@ const Navigators = () => {
                     <Stack.Screen name="Home" component={Home} />
                     <Stack.Screen name="RestaurantDetail" component={RestaurantDetail} />
                     <Stack.Screen name="OrderCompleteScreen" component={OrderComplete} />
+                    <Stack.Screen name="OrderScreen" component={OrderScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
         </Provider>

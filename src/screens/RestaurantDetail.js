@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, SafeAreaView } from 'react-native'
 import { Divider } from 'react-native-elements'
+import BottomTabs from '../components/home/BottomTabs'
 import About from '../components/RestaurantDetail/About'
 import MenuItem from '../components/RestaurantDetail/MenuItem'
 import ViewCart from '../components/RestaurantDetail/ViewCart'

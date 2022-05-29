@@ -8,7 +8,8 @@ import SignInScreen from "./SignInScreen";
 import SplashScreen from "./SplashScreen";
 import VerificationScreen from "./VerificationScreen";
 import WelcomeScreen from "./WelcomeScreen";
+import OrderScreen from "./OrderScreen";
 
 
 
-export {SplashScreen,OrderComplete,VerificationScreen, WelcomeScreen,SignInScreen,CreateAccountScreen,ForgotPasswordScreen,RegisterScreen,RestaurantDetail,Home};
+export {SplashScreen,OrderScreen,OrderComplete,VerificationScreen, WelcomeScreen,SignInScreen,CreateAccountScreen,ForgotPasswordScreen,RegisterScreen,RestaurantDetail,Home};
