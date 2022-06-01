@@ -17,6 +17,6 @@
 ![lastOrder](https://user-images.githubusercontent.com/80698185/171372166-a27357f1-a9f8-4c84-884b-f91e119ec125.jpg)
 
 You must check foodymoody backend repo,both of package.json folders,searchbar api's and yelp api's keys.
-Then npm install -> npx react-native start --reset-cache  -> npx react-native run-android
-Next you create an MongoDB database and cluster and config your foodymoody app.
-Finally run backend app npm install -> npm start
+Then you create an MongoDB database and cluster and config your foodymoody app.
+Next run backend app npm install -> npm start .
+Finally foodymoody npm install -> npx react-native start --reset-cache  -> npx react-native run-android .
