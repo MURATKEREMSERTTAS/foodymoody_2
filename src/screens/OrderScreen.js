@@ -6,10 +6,11 @@ import { Colors,Fonts } from '../constants'
 import { Seperator } from '../components'
 import { Display } from '../utils'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import BottomTabs from '../components/home/BottomTabs'
 
 
 
-export default function OrderScreen(navigation) {
+export default function OrderScreen({navigation}) {
 const costItems = useSelector(state => state.cartReducer.selectedItems.items);
 const foods =costItems
 return (
@@ -30,7 +31,9 @@ return (
             <Divider width={1.8} orientation="vertical" style={{marginHorizontal:20}} />
         </View>))}
       </ScrollView>
-</View>)
+      <BottomTabs navigation={navigation} />
+</View>
+)
 }
 
 const FoodInfo = (props) => {
